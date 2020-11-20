@@ -23,9 +23,8 @@ class EchoServiceImpl final : public Echo::Service {
   Status Sort(ServerContext* context, const SortRequest* request,
                   SortResponse* response) override {
     std::vector<int32_t> vec{request->numbers.begin(), request->numbers.end()};
-    // response->set_data(prefix + request->data());
     std::sort(vec.begin(), vec.end());
-    *response->numbers.mutable_numbers() = {vec.begin(), vec.end()};
+    response->set_numbers(vec.begin(), vec.end());
     return Status::OK;
   }
 };
