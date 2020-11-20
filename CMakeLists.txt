@@ -11,7 +11,8 @@ set(
   CACHE STRING "Default cache server"
 )
 
-set(HUNTER_CONFIGURATION_TYPE Release)
+set(HUNTER_CONFIGURATION_TYPES Release)
+set(HUNTER_BUILD_SHARED_LIBS ON)
 
 include("tools/gate/cmake/HunterGate.cmake")
 
