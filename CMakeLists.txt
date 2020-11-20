@@ -11,6 +11,8 @@ set(
   CACHE STRING "Default cache server"
 )
 
+set(HUNTER_CONFIGURATION_TYPE Release)
+
 include("tools/gate/cmake/HunterGate.cmake")
 
 HunterGate(
