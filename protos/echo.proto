@@ -5,7 +5,7 @@ package echo;
 import "google/api/annotations.proto";
 
 service Echo {
-  rpc Hello(HelloRequest) returns (HelloResponse) {
+  rpc Sort(HelloRequest) returns (HelloResponse) {
     option (google.api.http) = {
       post: "/v1/hello"
       body: "*"
@@ -14,9 +14,9 @@ service Echo {
 }
 
 message HelloRequest {
-  string data = 1;
+  repeated int32 numbers = 1;
 }
 
 message HelloResponse {
-  string data = 1;
+  repeated int32 numbers = 1;
 }
