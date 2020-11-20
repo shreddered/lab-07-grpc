@@ -22,9 +22,11 @@ using echo::Echo;
 class EchoServiceImpl final : public Echo::Service {
   Status Sort(ServerContext* context, const SortRequest* request,
                   SortResponse* response) override {
-    std::vector<int32_t> vec{request->numbers.begin(), request->numbers.end()};
+    std::vector<int32_t> vec{request->numbers().begin(), request->numbers().end()};
     std::sort(vec.begin(), vec.end());
-    response->set_numbers(vec.begin(), vec.end());
+    google::protobuf::RepeatedField<int> fData(vec.begin(), vec.end());
+    *response->mutable_numbers() = fData;
+    // response->set_numbers(vec.begin(), vec.end());
     return Status::OK;
   }
 };
