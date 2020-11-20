@@ -70,14 +70,14 @@ init-submodule: intall-git .init-submodule
 install-deps: install-golang install-protobuf install-go-deps install-cpp-deps
 
 .PHONY: install-golang
-install-golang: install-brew .install-golang
+install-golang: .install-golang
 
 .PHONY: .install-golang
 .install-golang:
 	which go || brew install golang
 
 .PHONY: install-protobuf
-install-protobuf: install-brew .install-protobuf
+install-protobuf: .install-protobuf
 
 .PHONY: .install-protobuf
 .install-protobuf:
@@ -96,19 +96,15 @@ install-go-deps: install-golang .install-go-deps
 .PHONY: install-cpp-deps
 install-cpp-deps: install-git install-cmake .install-cpp-deps
 
-.PHONY: install-brew
-install-brew:
-	which brew || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
 .PHONY: install-git
-install-git: install-brew .install-git
+install-git: .install-git
 
 .PHONY: .install-git
 .install-git:
 	which git || brew install git
 
 .PHONY: install-cmake
-install-cmake: install-brew .install-cmake
+install-cmake: .install-cmake
 
 .PHONY: .install-cmake
 .install-cmake:
