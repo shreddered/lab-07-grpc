@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 service Echo {
   rpc Sort(SortRequest) returns (SortResponse) {
     option (google.api.http) = {
-      post: "/v1/hello"
+      post: "/v1/sort"
       body: "*"
     };
   }
