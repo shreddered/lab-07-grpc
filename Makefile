@@ -129,13 +129,13 @@ ifndef GRPC_CPP_PLUGIN_EXISTS
 endif
 
 .PHONY: config
-config: install-gsed .config
+config: install-sed .config
 
-.PHONY: install-gsed
-install-gsed:
-	which gsed || brew install gsed
+.PHONY: install-sed
+install-sed:
+	which sed || brew install sed
 
 GO_PACKAGE_PATH:=$(shell pwd | sed -e "s,.*go\/src/github.com/\(.*\),\1,")
 .PHONY: .config
 .config:
-	gsed -i 's,bmstu-iu8-cpp-sem-3/lab-07-grpc,$(GO_PACKAGE_PATH),' gateway.go
+	sed -i 's,bmstu-iu8-cpp-sem-3/lab-07-grpc,$(GO_PACKAGE_PATH),' gateway.go
