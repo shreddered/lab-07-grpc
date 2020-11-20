@@ -1,6 +1,8 @@
+#include <algorithm>
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
@@ -12,15 +14,17 @@ using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
-using echo::HelloRequest;
-using echo::HelloResponse;
+using echo::SortRequest;
+using echo::SortResponse;
 using echo::Echo;
 
 class EchoServiceImpl final : public Echo::Service {
-  Status Hello(ServerContext* context, const HelloRequest* request,
-                  HelloResponse* response) override {
-    std::string prefix("Hello ");
-    response->set_data(prefix + request->data());
+  Status Sort(ServerContext* context, const SortRequest* request,
+                  SortResponse* response) override {
+    std::vector<int32_t> vec{request->numbers.begin(), request->numbers.end()};
+    // response->set_data(prefix + request->data());
+    std::sort(vec.begin(), vec.end());
+    *response->numbers.mutable_numbers() = {vec.begin(), vec.end()};
     return Status::OK;
   }
 };
